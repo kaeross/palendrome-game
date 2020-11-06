@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "ts-node-dev --inspect -T ./src/index.ts",
+    "start": "ts-node-dev -T ./src/index.ts",
     "test": "npm run build && jasmine --config=jasmine.json",
     "build": "tsc"
   },

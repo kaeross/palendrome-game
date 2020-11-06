@@ -31,10 +31,14 @@ class GameHandler {
      * @returns the word score
      */
     public submitEntry(entry: { name: string, word: string }): number {
+        this.validate(entry.word);
+
         const score = this.scoreWord(entry.word);
+
         ScoreStore.setScore({ name: entry.name, points: score });
 
         return score;
+
     }
 
 
@@ -58,11 +62,29 @@ class GameHandler {
      */
     private isPalendrome(word: string): boolean {
         // Remove all special characters and spaces
-        const alphabetOnly = word.toLowerCase().replace(/[^a-z0-9]/gi, '');
+        const alphabetOnly = word.toLowerCase().replace(/\s/gi, '');
         // Reverse the word
         const reversed = alphabetOnly.split('').reverse().join('');
 
         return alphabetOnly === reversed;
+    }
+
+    /**
+     * Checks whether a word is valid, ie does it contain anything other than letters, digits or spaces
+     * 
+     * If the word is not valid an error will be thrown
+     * 
+     * @param word the string to validate
+     */
+    private validate(word: string): void {
+        const valid = word.replace(/[^\s\w\d]/gi, '').length === word.length;
+
+        if (!valid) {
+            const error = new Error('Alphanumeric characters and spaces only');
+            error.name = 'BadRequest';
+
+            throw error;
+        }
     }
 }
 

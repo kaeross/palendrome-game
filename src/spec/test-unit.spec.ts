@@ -6,8 +6,12 @@ describe('Submit entry', () => {
     // Instantiate a single instance of the game handler
     const gameHandler = new GameHandler();
 
-    it('should correctly score the palendrome phrase "Al lets Della call Ed \'Stella.\'"', () => {
-        expect(gameHandler.submitEntry({ name: 'test', word: "Al lets Della call Ed \'Stella.\'" })).toBe(31);
+    it('should correctly score the palendrome phrase "Al lets Della call Ed Stella"', () => {
+        expect(gameHandler.submitEntry({ name: 'test', word: "Al lets Della call Ed Stella" })).toBe(28);
+    });
+
+    it('should not allow punctuation', () => {
+        expect(() => gameHandler.submitEntry({ name: 'test', word: "Al lets Della call Ed \'Stella.\'" })).toThrowError('Alphanumeric characters and spaces only');
     });
 
     it('should find that 9oo9 is a palendrome', () => {
