@@ -1,9 +1,11 @@
 import { Score } from "./models/score";
 
-abstract class ScoreStore {
+class ScoreStore {
 
     /** Stores the scores */
     private static scores: Score[] = [];
+
+    constructor() { }
 
     /**
      * Get the current scores
@@ -11,7 +13,7 @@ abstract class ScoreStore {
      * @returns an array of scores
      */
     public static getScores(): Score[] {
-        return this.scores;
+        return ScoreStore.scores;
     }
 
     /**
@@ -19,12 +21,12 @@ abstract class ScoreStore {
      * @param score the Score object
      */
     public static setScore(score: Score): void {
-        const existingScore = this.scores.find((s) => s.name === score.name);
+        const existingScore = ScoreStore.scores.find((s) => s.name === score.name);
         if (existingScore) {
             existingScore.points = score.points;
         }
         else {
-            this.scores.push(score);
+            ScoreStore.scores.push(score);
         }
     }
 

@@ -1,4 +1,4 @@
-import { ScoreStore } from "./score-handler";
+import { ScoreStore } from "./score-store";
 import { Score } from "./models/score";
 
 class GameHandler {
