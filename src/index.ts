@@ -1,7 +1,5 @@
+import express, { Request, Response } from 'express';
 import { GameHandler } from "./server/game-handler";
-import { Request, Response } from "express";
-
-const express = require('express');
 
 const app = express();
 
