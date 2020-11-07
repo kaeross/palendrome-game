@@ -17,17 +17,14 @@ class ScoreStore {
     }
 
     /**
+     * Adds the score to the score store
+     * 
+     * Adds all scores as a new score even if the player exists to allow multiple, non cumulative, turns
      * 
      * @param score the Score object
      */
     public static setScore(score: Score): void {
-        const existingScore = ScoreStore.scores.find((s) => s.name === score.name);
-        if (existingScore) {
-            existingScore.points = score.points;
-        }
-        else {
-            ScoreStore.scores.push(score);
-        }
+        ScoreStore.scores.push(score);
     }
 
 }
